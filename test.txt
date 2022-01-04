@@ -1,0 +1,14 @@
+
+Savoir où on est :  dd(__DIR__);
+
+Créer un controller sans template :
+> symfony console make:controller DataLoader --no-template
+
+
+Tester la session pour récupérer les données du panier clé quantity et clé product.
+<pre>
+  {{ dump(app.session)}}
+</pre>
+
+Arrondi des centimes
+${{ (subTotal * 1.2) | round(2, 'floor') }}

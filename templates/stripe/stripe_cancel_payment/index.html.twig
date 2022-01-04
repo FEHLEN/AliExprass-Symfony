@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StripeCancelPayementController!{% endblock %}
+
+{% block body %}
+   {{ include("partials/title.html.twig", {'name': 'Commande validée '})}}
+    <div class="section checkout">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="text-center order_complete">
+                        <i class="fas fa-ban"></i>
+                        <div class="heading_s1">
+                          <h3>Désolé {{ order.user.firstname}} {{ order.user.lastname}}. Votre paiement a été rejeté !</h3>
+                        <div>
+                        <div>Le paiment de la commande numéro <strong>{{ order.reference}}</strong>  a été rejeté.
+                        </div>
+                            <div>Vous avez essayé de payer votre commande et nous vous en remercions.
+                                Votre paiement n'a pas été accepté. Votre commande n'a pas été confirmée.
+                                Nous vous invitons à vous connecter sur notre site et renouveller votre commande.
+                            </div>
+                            <div>
+                                <a href="{{ path('checkout')}}" class="btn btn-fill-out">Renouveller la paiement</a>
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

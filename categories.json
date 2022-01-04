@@ -1,0 +1,1 @@
+[{"stmt":"SELECT * FROM categories;","header":["id","name_categorie","description","image"],"rows":[["1","BONNET","NULL","bonnet_femme_1.png"],["2","MONTRES","NULL","montre_1.png"],["3","BIJOUX","NULL","388718c3352524b9cc9c638d66a3a99b5b708a88.png"],["4","PORTABLES","NULL","78d2f79d3b46578c23e611300f169ee6b6ca8047.png"],["5","DRONE","Mini Drone, caméra WiFi.","drone_5.png"]]}]
