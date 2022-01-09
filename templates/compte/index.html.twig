@@ -69,13 +69,20 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           <tr>
-                                                <td>1234</td>
-                                                <td>09/12/2021</td>
-                                                <td>En cours</td>
-                                                <td>210 euros pour 3 articles</td>
-                                                <td><a href="" class="btn btn-fill-out btn-sm">View</a></td> 
-                                            </tr>
+                                            {% if orders %}
+                                                {% for order in orders %}
+                                                <tr>
+                                                    <td>{{ order.id }}</td>
+                                                    <td>{{ order.createdAt | date('d/m/Y') }}</td>
+                                                    <td>En cours</td>
+                                                    <td>{{ order.subTotalTtc/100}} euros pour {{ order.quantity}} articles</td>
+                                                    <td><a href="{{ path('compte_commande', {'id':order.id}) }}" class="btn btn-fill-out btn-sm">Voir</a></td> 
+                                                </tr>
+                                                {% endfor %}
+                                            {% else %}
+                                                <div class="messageOrders">{{ app.user.firstname}} {{ app.user.lastname }}. Vous n'avez pas encore fait de commande !</div>
+                                            {% endif %}
+                                           
                                         </tbody>
                                     </table>
                                 </div>

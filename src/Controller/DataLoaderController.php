@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
-use App\Entity\Categories;
 use App\Entity\Product;
 use App\Entity\Transport;
+use App\Entity\Categories;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DataLoaderController extends AbstractController
 {
@@ -60,7 +61,20 @@ class DataLoaderController extends AbstractController
             $manager->persist($transport);
             $transports[] = $transport;
         }
-        $manager->flush();  //décommenter pour utiliser
+        //$manager->flush();  //décommenter pour utiliser
+
+        return $this->json([
+            'message' => 'Bienvenue dans le controller de sauvegarde!',
+            'path' => 'src/Controller/DataLoaderController.php',
+        ]);
+    }
+    /**
+     * @Route("/data/role", name="data_loader")
+     */
+    public function role(EntityManagerInterface $manager, UserRepository $repoUser){
+        $user = $repoUser->find(1);
+        $user->setRoles(['ROLE_ADMIN']);
+        //$manager->flush();  //décommenter pour utiliser afin de donner des droits d'administrateur
 
         return $this->json([
             'message' => 'Bienvenue dans le controller de sauvegarde!',

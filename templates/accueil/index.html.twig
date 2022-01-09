@@ -1,12 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccueilController!{% endblock %}
+{% block title %}Hello Page Accueil!{% endblock %}
 
 {% block body %}
-
-    {{ include("partials/title.html.twig", {'name':'Bienvenue'}) }}
     <div class="container-fluid">
+    {% if accueilSlider %}
+        {{ include("partials/accueil_slider.html.twig", { 'slider': accueilSlider}) }}
+    {% else %}
+       {{ include("partials/title.html.twig", {'name':'Bienvenue'}) }}
         <h1>Avec NeliExprass vous faites des affaires renversantes ! ✅</h1>
+    {% endif %}
     </div>
     <div class="container">
 

@@ -4,18 +4,21 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Repository\ProductRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\AccueilSliderRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AccueilController extends AbstractController
 {
     /**
      * @Route("/", name="accueil")
      */
-    public function index(ProductRepository $repoProduct): Response
+    public function index(ProductRepository $repoProduct, AccueilSliderRepository $repoSlider): Response
     {
         $products = $repoProduct->findAll();
+        $accueilSlider = $repoSlider->findBy(['isDisplayed'=>true]);
+        //dd($accueilSlider);
         $productBest = $repoProduct->findByIsBest(1);
         $productNew = $repoProduct->findByIsNew(1);
         $productFeatured = $repoProduct->findByIsFeatured(1);
@@ -29,7 +32,8 @@ class AccueilController extends AbstractController
             'productBest' => $productBest,
             'productNew' => $productNew,
             'productFeatured' => $productFeatured,
-            'productSpecialOffer' => $productSpecialOffer
+            'productSpecialOffer' => $productSpecialOffer,
+            'accueilSlider'=>$accueilSlider
         ]);
     }
 
@@ -63,7 +67,7 @@ class AccueilController extends AbstractController
            $products = $repoProduct->findWithSearch($search);    
         }
 
-        return $this->render('home/shop.html.twig', [
+        return $this->render('accueil/shop.html.twig', [
             'products' => $products,
             'search' => $form->createView()
         ]);

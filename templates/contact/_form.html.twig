@@ -1,0 +1,74 @@
+<div class="section pb_70">
+	<div class="container">
+        <div class="row">
+            <div class="col-xl-4 col-md-6">
+            	<div class="contact_wrap contact_style3">
+                    <div class="contact_icon">
+                        <i class="linearicons-map2"></i>
+                    </div>
+                    <div class="contact_text">
+                        <span>Adresse</span>
+                        <p>6 Rue Léon Gambetta, 64000 Pau</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-6">
+            	<div class="contact_wrap contact_style3">
+                    <div class="contact_icon">
+                        <i class="linearicons-envelope-open"></i>
+                    </div>
+                    <div class="contact_text">
+                        <span>Email Address</span>
+                        <a href="mailto:info@sitename.com">contact@aliexprass.fr </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-6">
+            	<div class="contact_wrap contact_style3">
+                    <div class="contact_icon">
+                        <i class="linearicons-tablet2"></i>
+                    </div>
+                    <div class="contact_text">
+                        <span>Phone</span>
+                        <p>(+33) 6 25 55 25 63</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ form_start(form) }}
+     <div class="message-flash">
+         {% for message in app.flashes('contact_success') %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert"> {{ message }}
+               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+         {% endfor %}
+         {% for message in app.flashes('contact_cancel') %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert"> {{ message }}
+               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+         {% endfor %}
+     </div>
+     <div class="form-row">
+        <div class="col-md-6">{{ form_row(form.firstname, {"label":"Votre prénom"}) }}</div>
+        <div class="col-md-6">{{ form_row(form.lastname, {"label":"Votre nom"}) }}</div>
+     </div>
+     <div class="form-row">
+        <div class="col-md-6">{{ form_row(form.email)}}</div>
+        <div class="col-md-6">{{ form_row(form.phone, {"label":"Votre numéro de téléphone"}) }}</div>
+     </div>
+     <div class="form-group">
+        {{ form_row(form.sujet) }}
+     </div>
+     <div class="form-group">
+        {{ form_row(form.content, {"label":"Votre message"}) }}
+     </div>
+
+    <button class="btn btn-fill-out btn-block">{{ button_label|default('Valider') }}</button>
+    <br>
+{{ form_end(form) }}
